@@ -15,5 +15,5 @@ int main()
     alarm a2{timeOfDay{11,44},1};a2.print();
     
     if (compareTimeOfDay(a1.getWakeTime(), a2.getWakeTime())) std::cout << "same\n";
-    else std::cout << "different\n";
+    else std::cout << "different";
 }
