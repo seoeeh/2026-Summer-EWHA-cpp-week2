@@ -9,30 +9,31 @@ namespace ParkSeohee2114012
 {
     class timeOfDay
     {
-        int hour{};
-        int minute{};
+        int hour;
+        int minute;
 
         void testHour()
         {
-            if ((hour < 0) || (hour>23)) {
-                std::cout << " Illegal hour value!\n";
+            if (hour < 0 || hour>23) {
+                std::cout << "invalid hour\n";
                 std::exit(0);
             }
         }
         void testMinute()
         {
             if ((minute < 0) || (minute >59)) {
-                std::cout << "Illegal minute value!\n";
+                std::cout << "invalid minute\n";
                 std::exit(1);
             }
         }
     public:
-        timeOfDay(int h = 0, int m = 0):hour{h}, minute{m}{testHour();testMinute();}
+        timeOfDay(int h = 0, int m = 0):
+        hour{h}, minute{m}{testHour();testMinute();}
         void input()
         {
-            std::cout << "Enter the hour as a number(0~23): ";
+            std::cout << "Enter hour(0~23): ";
             std::cin >> hour; testHour();
-            std::cout << "Enter the minute of the number(0~59): ";
+            std::cout << "Enter minute(0~59): ";
             std::cin >> minute; testMinute();
         }
         void setHour(int h) {hour = h; testHour();}
@@ -42,7 +43,7 @@ namespace ParkSeohee2114012
                 if (hour < 10) std::cout << "0";
                 std::cout << hour << ":"; 
                 if (minute < 10) std::cout << "0";
-                std::cout << minute << std::endl;
+                std::cout << minute;
             }
         int getHour() const { return hour; }
         int getMinute() const { return minute; }
