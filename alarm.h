@@ -8,7 +8,7 @@ namespace ParkSeohee2114012
         timeOfDay wakeTime;
         bool inActive;
     public:
-        alarm(timeOfDay t = timeOfDay{0,0}, bool a = true):wakeTime{t}, inActive(a){} //멤버변수초기화
+        alarm(timeOfDay t = timeOfDay{0,0}, bool a = false):wakeTime{t}, inActive(a){} //멤버변수초기화
         void print()
         {
             wakeTime.print();

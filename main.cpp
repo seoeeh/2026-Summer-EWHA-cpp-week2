@@ -12,4 +12,6 @@ int main()
 {
     using namespace ParkSeohee2114012;
     alarm a1;a1.print();
+    alarm a2{timeOfDay(11,44), 1};a2.print(); 
+    if (compareTimeOfDay(a1.getWakeTime(), a2.getWakeTime())) std::cout << "same \n";
 }
