@@ -10,8 +10,9 @@ namespace ParkSeohee2114012
 
 int main()
 {
+    ParkSeohee2114012::alarm a1; a1.print();
+    ParkSeohee2114012::alarm a2{ParkSeohee2114012::timeOfDay(11,44), 1}; a2.print(); 
+    
     using namespace ParkSeohee2114012;
-    alarm a1;a1.print();
-    alarm a2{timeOfDay(11,44), 1};a2.print(); 
     if (compareTimeOfDay(a1.getWakeTime(), a2.getWakeTime())) std::cout << "same \n";
 }

@@ -15,7 +15,7 @@ namespace ParkSeohee2114012
         void testHour()
         {
             if ((hour < 0) || (hour>23)) {
-                std::cout << "illegal month value!\n";
+                std::cout << " Illegal hour value!\n";
                 std::exit(0);
             }
         }
