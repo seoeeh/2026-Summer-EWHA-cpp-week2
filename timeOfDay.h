@@ -43,7 +43,7 @@ namespace ParkSeohee2114012
                 if (hour < 10) std::cout << "0";
                 std::cout << hour << ":"; 
                 if (minute < 10) std::cout << "0";
-                std::cout << minute;
+                std::cout << minute << std::endl;
             }
         int getHour() const { return hour; }
         int getMinute() const { return minute; }

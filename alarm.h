@@ -18,7 +18,7 @@ namespace ParkSeohee2114012
             std::cout << wakeTime.getMinute();
 
             // 이어서 알람 상태 출력
-            std::cout << " alarm is " << ((inActive)? "on" : "off") <<  "\n"; //ifelse구문으로해도딤
+            std::cout << " alarm is " << ((inActive)? "on" : "off") << std::endl; //ifelse구문으로해도딤
         }
         const timeOfDay& getWakeTime() const { return wakeTime; }
         void setWakeTime(const timeOfDay& t) { wakeTime = t; }
