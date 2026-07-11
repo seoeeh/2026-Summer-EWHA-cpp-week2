@@ -3,6 +3,7 @@
 
 namespace ParkSeohee2114012
 {
+    void 
     class alarm
     {
         timeOfDay wakeTime;
