@@ -1,68 +1,31 @@
-#include "alarm.h"
-#include <array>
-namespace ParkSeohee2114012
-{
-    void printAlarmArray(const alarm a[], const int n)
-    {
-        for (int i = 0; 
-            i<n; ++i)
-            std::cout << a[i];
-    }
-    void parVal(timeOfDay v){ v+= 1;}
-    void parRef(timeOfDay& r){r+= 1;}
-    void parPtr(timeOfDay* p){*p +=1;}
-    timeOfDay retVal(timeOfDay v){v+= 1; return v;}
-    timeOfDay& retRef(timeOfDay& r){r+= 1; return r;}
-    timeOfDay* retPtr(timeOfDay* p){*p +=1; return p;}
-}
+#include "timePtr.h"
+#include <memory>
 int main()
 {
     using namespace ParkSeohee2114012;
-    
-    timeOfDay val{11,30};
-    std::cout << val << " ";
-    
-    parVal(val);
-    std::cout << val << std::endl;
-    
-    timeOfDay& ref{val};
-    std::cout << ref << " ";
-    
-    parRef(ref);
-    std::cout << ref << std::endl;
-    
-    timeOfDay* ptr{&val};
-    std::cout << *ptr << " ";
 
-    parPtr(ptr);
-    std::cout << *ptr << std::endl;
+    timePtr t1(13,30); t1.print();
+    timePtr t2(t1); t2.print();
+    timePtr t3{std::move(t2)};t2.print(); t3.print();
+    t2 = std::move(t3);
+    t3 = t2;
 
-    val = timeOfDay{15, 30};
-    std::cout << val << " " <<retVal(val) << "\n";
-    std::cout << ref << " " << retRef(ref) << "\n";
-    std::cout << *ptr << " " <<*retPtr(ptr) << "\n";
+    std::unique_ptr<timePtr> up1;
+    auto up2{std::make_unique<timePtr>(14,40)};
+    up1 = std::move(up2); up1->print();
 
-    timeOfDay* tPtr {new timeOfDay};
-    tPtr->setHour(18);
-    tPtr->setMinute(30);
-    std::cout << *tPtr << std::endl;
-    delete tPtr;
+    auto sp1{std::make_shared<timePtr>(15,50)};
+    std::shared_ptr<timePtr> sp2{sp1};
+    std::cout << sp1.use_count() << " " << sp2.use_count() << "\n";
+
+    std::weak_ptr<timePtr> wp1{sp1};
+    std::cout << sp1.use_count() << " " << sp2.use_count() << "\n";
+
+    sp1.reset();
+    std::cout << sp1.use_count() << " " << sp2.use_count() << "\n";
+
+    if (!wp1.expired())
+        sp1 = wp1.lock();
     
-        // timeOfDay t1, t2;
-        // std::cin >> t1 >> t2;
-        // std::cout << t1 << " " << t2 << '\n';
-        // std::cout << ++t2 << '\n';
-        // std::cout << t2++ << '\n';
-        // std::cout << t2 << '\n';
 
-    return 0;
-    
-}
-
-namespace ParkSeohee2114012
-{
-    bool compareTimeOfDay(const timeOfDay& t1, const timeOfDay& t2)
-    {
-        return t1.getHour() == t2.getHour() && t1.getMinute() == t2.getMinute();
-    }
 }
