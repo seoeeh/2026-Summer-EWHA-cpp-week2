@@ -8,40 +8,53 @@ namespace ParkSeohee2114012
             i<n; ++i)
             std::cout << a[i];
     }
+    void parVal(timeOfDay v){ v+= 1;}
+    void parRef(timeOfDay& r){r+= 1;}
+    void parPtr(timeOfDay* p){*p +=1;}
+    timeOfDay retVal(timeOfDay v){v+= 1; return v;}
+    timeOfDay& retRef(timeOfDay& r){r+= 1; return r;}
+    timeOfDay* retPtr(timeOfDay* p){*p +=1; return p;}
 }
 int main()
 {
     using namespace ParkSeohee2114012;
-
-    const int n{4};
-    alarm a[n];
-    a[0] = alarm{"moring", {6,0}, 1};
-
-    a[1].setName("class");
-    a[1].setWakeTime({9,0});
-    a[1].setActive(1);
-    a[2].input();
     
-    std::cin >> a[3];
-    printAlarmArray(a,n);
-
-    std::array<alarm, n>b;
-    for (int i = 0; i<b.size(); ++i)
-        b.at(i) = a[i];//b[i]
-    for(const auto& bi : b)
-        bi.print();
-    // timeOfDay t1, t2;
-    // std::cin >> t1 >> t2;
-    // std::cout << t1 << " " << t2 << '\n';
-    // std::cout << ++t2 << '\n';
-    // std::cout << t2++ << '\n';
-    // std::cout << t2 << '\n';
-
-    // if (t1 == t2) std::cout << "same\n";
-    // else std::cout << "different\n";
-
-    // std::cout << t1+t2 << std::endl;
+    timeOfDay val{11,30};
+    std::cout << val << " ";
     
+    parVal(val);
+    std::cout << val << std::endl;
+    
+    timeOfDay& ref{val};
+    std::cout << ref << " ";
+    
+    parRef(ref);
+    std::cout << ref << std::endl;
+    
+    timeOfDay* ptr{&val};
+    std::cout << *ptr << " ";
+
+    parPtr(ptr);
+    std::cout << *ptr << std::endl;
+
+    val = timeOfDay{15, 30};
+    std::cout << val << " " <<retVal(val) << "\n";
+    std::cout << ref << " " << retRef(ref) << "\n";
+    std::cout << *ptr << " " <<*retPtr(ptr) << "\n";
+
+    timeOfDay* tPtr {new timeOfDay};
+    tPtr->setHour(18);
+    tPtr->setMinute(30);
+    std::cout << *tPtr << std::endl;
+    delete tPtr;
+    
+        // timeOfDay t1, t2;
+        // std::cin >> t1 >> t2;
+        // std::cout << t1 << " " << t2 << '\n';
+        // std::cout << ++t2 << '\n';
+        // std::cout << t2++ << '\n';
+        // std::cout << t2 << '\n';
+
     return 0;
     
 }

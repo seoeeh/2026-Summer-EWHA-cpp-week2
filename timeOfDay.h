@@ -39,16 +39,22 @@ namespace ParkSeohee2114012
         ++minute; //0~59
         if (minute == 60) { minute = 0; ++hour;}
         if (hour == 24) {hour = 0;}
-        return timeOfDay{hour, minute};
+        return *this;
       }
       timeOfDay operator++(int)
       {
-        timeOfDay temp{hour, minute};
-         ++minute; //0~59
-        if (minute == 60) { minute = 0; ++hour;}
-        if (hour == 24) {hour = 0;}
+        timeOfDay temp{*this};
+        ++(*this);
         return temp;
       } 
+      timeOfDay& operator+=(int m)
+      {
+        std::cout << *this << std::endl;
+        minute += m ;
+        if (minute >= 60) { hour +=minute/60;  minute %= 60;} 
+        if (hour >= 24) {hour %= 24;}
+        return *this;
+      }
       friend std::istream& operator>>(std::istream& is, timeOfDay& t)
       {
         //std::cin (input()) --> is
@@ -73,7 +79,7 @@ namespace ParkSeohee2114012
         int minute2{t2.minute + t2.hour*60};
         int totalMinute{minute1 + minute2};
         int newHour{totalMinute/60}; //0~23
-        if (newHour > 24) newHour = newHour %24;
+        if (newHour >= 24) newHour = newHour %24;
         int newMinute{totalMinute%60};
         return timeOfDay{newHour, newMinute};};
       };
